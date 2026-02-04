@@ -84,7 +84,7 @@
       inset: 12mm;
       display:flex;
       flex-direction:column;
-      gap: 10mm;
+      gap: 8mm;
     }
 
     /* ===== Header pill + logo ===== */
@@ -365,7 +365,7 @@
     .grid-2{
       display:grid;
       grid-template-columns: 0.9fr 1.1fr;
-      gap: 12mm;
+      gap: 10mm;
       flex:1;
       min-height: 0;
       align-items: stretch;
@@ -487,33 +487,33 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 26px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 28px 80px rgba(15,23,42,0.12);
+      border-radius: 20px;
+      border: none;
+      box-shadow: none;
     }
 
     .benefit-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 4mm;
+      gap: 10px;
+      margin-top: 3mm;
     }
     .benefit-card{
-      border-radius:16px;
+      border-radius:14px;
       border:1px solid #e2e8f0;
       background: rgba(255,255,255,0.9);
-      padding:12px 14px;
+      padding:10px 12px;
       box-shadow: 0 18px 50px rgba(15,23,42,0.06);
     }
     .benefit-card h3{
       margin:0 0 4px 0;
-      font-size: 15px;
+      font-size: 14px;
       color:#111827;
       font-weight: 900;
     }
     .benefit-card p{
       margin:0;
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--muted);
       line-height:1.3;
     }
@@ -521,15 +521,15 @@
     .step-grid{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10mm;
-      margin-top: 4mm;
+      gap: 6mm;
+      margin-top: 3mm;
       flex:1;
     }
     .step-card{
-      border-radius:18px;
+      border-radius:16px;
       border:1px solid #e5e7eb;
       background: rgba(255,255,255,0.9);
-      padding:14px 16px;
+      padding:12px 14px;
       box-shadow: 0 18px 55px rgba(15,23,42,0.08);
       display:flex;
       flex-direction:column;
@@ -542,13 +542,13 @@
       letter-spacing: 0.4px;
     }
     .step-title{
-      font-size: 15px;
+      font-size: 14px;
       font-weight:900;
       color:#111827;
       margin:0;
     }
     .step-desc{
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--muted);
       line-height:1.3;
       margin:0;
@@ -557,19 +557,19 @@
     .package-grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10mm;
-      margin-top: 4mm;
+      gap: 6mm;
+      margin-top: 3mm;
       flex:1;
     }
     .package-card{
-      border-radius:20px;
-      padding:14px 16px;
+      border-radius:18px;
+      padding:12px 14px;
       border:1px solid #e5e7eb;
       background: rgba(255,255,255,0.92);
       box-shadow: 0 18px 55px rgba(15,23,42,0.08);
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:8px;
     }
     .package-card.featured{
       border:2px solid rgba(137,35,173,0.25);
@@ -581,26 +581,26 @@
       transform: translateY(-2mm);
     }
     .package-title{
-      font-size: 18px;
+      font-size: 16px;
       font-weight:900;
       color:#111827;
       margin:0;
     }
     .package-price{
-      font-size: 20px;
+      font-size: 18px;
       font-weight:900;
       color: var(--blu);
       margin:0;
     }
     .package-sub{
-      font-size: 12.8px;
+      font-size: 12px;
       color: var(--muted);
       margin:0;
     }
     .package-list{
       margin:0;
       padding-left: 18px;
-      font-size: 13px;
+      font-size: 12px;
       color: var(--muted);
       line-height:1.35;
     }
@@ -636,28 +636,28 @@
       box-shadow: 0 18px 50px rgba(15,23,42,0.06);
     }
     .info-card{
-      border-radius:16px;
+      border-radius:14px;
       border:1px solid #e2e8f0;
       background: rgba(255,255,255,0.9);
-      padding:12px 14px;
+      padding:10px 12px;
       box-shadow: 0 18px 50px rgba(15,23,42,0.06);
     }
     .info-card h4{
       margin:0 0 4px 0;
-      font-size: 14px;
+      font-size: 13px;
       font-weight:900;
       color:#111827;
     }
     .info-card p{
       margin:0;
-      font-size:12.8px;
+      font-size:12px;
       color:var(--muted);
       line-height:1.3;
     }
     .info-row{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
     .quote-card{
       border-radius:20px;
@@ -1314,7 +1314,7 @@
                   <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
                 </div>
 
-                <div style="display:flex; flex-direction:column; gap:8mm; flex:1; min-height:0;">
+                <div style="display:flex; flex-direction:column; gap:6mm; flex:1; min-height:0;">
 
                   <div>
                     <h1 class="hero-title" style="font-size:42px; margin:0;">
@@ -1348,20 +1348,20 @@
                     </div>
                   </div>
 
-                  <div class="kpi" style="grid-template-columns: 1fr 1fr 1fr; margin-top:2mm;">
+                  <div class="kpi" style="grid-template-columns: 1fr 1fr 1fr; margin-top:1mm;">
                     <div class="kpi-box">
                       <div class="kpi-label">Deliverable</div>
-                      <div class="kpi-value">Report mensile</div>
+                      <div class="kpi-value" style="font-size:20px;">Report mensile</div>
                       <div class="kpi-chip"><span class="kpi-dot"></span>Azioni prioritarie</div>
                     </div>
                     <div class="kpi-box">
                       <div class="kpi-label">Cadenza</div>
-                      <div class="kpi-value">Aggiornamenti</div>
+                      <div class="kpi-value" style="font-size:20px;">Aggiornamenti</div>
                       <div class="kpi-chip"><span class="kpi-dot"></span>Follow-up continuo</div>
                     </div>
                     <div class="kpi-box">
                       <div class="kpi-label">Responsabilità</div>
-                      <div class="kpi-value">Noi eseguiamo</div>
+                      <div class="kpi-value" style="font-size:20px;">Noi eseguiamo</div>
                       <div class="kpi-chip"><span class="kpi-dot"></span>Tu approvi</div>
                     </div>
                   </div>
@@ -1383,7 +1383,7 @@
                   <img class="logo" src="http://img.mailinblue.com/9212108/images/68cc492abd5f0_1758218538.png" alt="Logo Migliorshop">
                 </div>
 
-                <div style="display:flex; flex-direction:column; gap:6mm; flex:1; min-height:0;">
+                <div style="display:flex; flex-direction:column; gap:5mm; flex:1; min-height:0;">
                   <div>
                     <h1 class="hero-title" style="font-size:40px; margin:0;">Scegli il livello <span>più adatto</span></h1>
                     <p class="hero-sub" style="font-size:15px; max-width:85%;">
