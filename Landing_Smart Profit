@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Profit — Moltiplica fino a 5 volte gli ordini, proteggendo il margine</title>
+
+  <!-- Google Font (stesso mood) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Palette (presa dallo stile che hai passato) */
+      --blu:#0e2166;
+      --viola:#8923ad;
+      --azzurro:#19c6ff;
+
+      --bg:#f4f5fb;
+      --ink:#101827;
+      --muted:#6b7280;
+      --muted2:#4b5563;
+
+      --card:#ffffff;
+      --card2:#fcfcff;
+      --bd:#e2e5f3;
+
+      --arancio:#f97316;
+      --arancio-bd:#fed7aa;
+      --arancio-bg:#fff7ed;
+      --arancio-txt:#9a3412;
+
+      --verde:#15803d;
+      --verde-bg:#ecfdf5;
+      --verde-bd:#bbf7d0;
+
+      --rosso:#ef4444;
+      --shadow: 0 18px 60px rgba(15,23,42,0.10);
+
+      --r16:16px;
+      --r20:20px;
+      --r28:28px;
+
+      --max: 1220px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Varela Round", system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(25,198,255,0.14), transparent 45%),
+        radial-gradient(circle at 88% 0%, rgba(137,35,173,0.12), transparent 48%),
+        var(--bg);
+      color:var(--ink);
+      line-height:1.35;
+    }
+
+    /* Layout helpers */
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(244,245,251,0.72);
+      border-bottom: 1px solid rgba(226,229,243,0.8);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding: 14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 240px;
+    }
+    .logo{
+      width:42px;height:42px;border-radius:14px;
+      background:
+        radial-gradient(circle at 25% 25%, rgba(25,198,255,0.35), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(137,35,173,0.30), transparent 60%),
+        linear-gradient(135deg, rgba(14,33,102,1), rgba(137,35,173,0.92));
+      box-shadow: 0 14px 34px rgba(14,33,102,0.18);
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.35);
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 180deg, rgba(25,198,255,0.0), rgba(25,198,255,0.35), rgba(249,115,22,0.18), rgba(137,35,173,0.22), rgba(25,198,255,0.0));
+      animation: spin 9s linear infinite;
+      filter: blur(0.2px);
+      opacity:0.9;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg);} }
+
+    .brand-title{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .brand-title strong{
+      font-size:14px;
+      color:var(--blu);
+      letter-spacing:-0.2px;
+    }
+    .brand-title span{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--muted2);
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+      white-space:nowrap;
+    }
+    .nav a:hover{
+      background:#ffffff;
+      border-color:rgba(14,33,102,0.14);
+      transform: translateY(-1px);
+      color:var(--blu);
+      box-shadow: 0 10px 26px rgba(15,23,42,0.06);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border-radius:999px;
+      padding: 10px 14px;
+      border: 1px solid rgba(14,33,102,0.18);
+      background: rgba(239,246,255,0.85);
+      color: var(--blu);
+      font-weight:900;
+      text-decoration:none;
+      font-size:13px;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      white-space:nowrap;
+      cursor:pointer;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(14,33,102,0.12);
+      background: #ffffff;
+      border-color: rgba(14,33,102,0.24);
+    }
+
+    .btn-primary{
+      border-color: rgba(249,115,22,0.35);
+      background: linear-gradient(135deg, #ffffff, var(--arancio-bg));
+      color: var(--arancio-txt);
+      box-shadow: 0 14px 30px rgba(249,115,22,0.14);
+    }
+    .btn-primary:hover{
+      border-color: rgba(249,115,22,0.55);
+      box-shadow: 0 18px 40px rgba(249,115,22,0.18);
+    }
+    .btn-dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, #f59e0b, var(--arancio));
+      box-shadow: 0 6px 14px rgba(249,115,22,0.16);
+      flex: 0 0 auto;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 26px 0 12px;
+    }
+    .hero-card{
+      border-radius: var(--r28);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.20), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.18), transparent 55%),
+        linear-gradient(180deg, #ffffff, rgba(255,255,255,0.75));
+      border:1px solid rgba(226,229,243,0.9);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      padding: 26px;
+      align-items:stretch;
+    }
+    .hero .kicker-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom: 12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      border: 1px solid rgba(14,33,102,0.14);
+      background: rgba(239,246,255,0.85);
+      color: var(--blu);
+      white-space:nowrap;
+    }
+    .chip .dot{
+      width:9px;height:9px;border-radius:999px;
+      background: linear-gradient(135deg, var(--viola), var(--azzurro));
+      box-shadow: 0 6px 14px rgba(25,198,255,0.12);
+    }
+    .chip-green{
+      border-color: var(--verde-bd);
+      background: var(--verde-bg);
+      color: var(--verde);
+    }
+    .chip-green .dot{
+      background: linear-gradient(135deg, #34d399, var(--verde));
+      box-shadow: 0 6px 14px rgba(21,128,61,0.12);
+    }
+    .chip-orange{
+      border-color: var(--arancio-bd);
+      background: var(--arancio-bg);
+      color: var(--arancio-txt);
+    }
+    .chip-orange .dot{
+      background: linear-gradient(135deg, #f59e0b, var(--arancio));
+      box-shadow: 0 6px 14px rgba(249,115,22,0.16);
+    }
+
+    .hero h1{
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.05;
+      letter-spacing:-0.4px;
+      color: var(--blu);
+    }
+    .hero h1 .accent{
+      color: var(--viola);
+      position:relative;
+      white-space:nowrap;
+    }
+    .hero h1 .accent:after{
+      content:"";
+      position:absolute;
+      left:-2px; right:-2px; bottom: 3px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(25,198,255,0.18), rgba(137,35,173,0.18));
+      z-index:-1;
+    }
+
+    .hero p{
+      margin: 12px 0 0;
+      color: var(--muted2);
+      font-size: 15px;
+      max-width: 58ch;
+    }
+
+    .hero-cta{
+      margin-top: 18px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+
+    .micro{
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 10px;
+    }
+    .micro span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius:999px;
+      border: 1px dashed rgba(203,213,245,1);
+      background: rgba(248,250,252,0.8);
+    }
+    .micro i{
+      width:8px;height:8px;border-radius:999px;
+      background: rgba(14,33,102,0.28);
+      display:inline-block;
+    }
+
+    /* Hero Visual */
+    .hero-visual{
+      border-radius: 22px;
+      border: 1px solid rgba(226,229,243,0.95);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(25,198,255,0.18), transparent 45%),
+        radial-gradient(circle at 80% 10%, rgba(137,35,173,0.16), transparent 50%),
+        radial-gradient(circle at 70% 90%, rgba(249,115,22,0.12), transparent 45%),
+        #ffffff;
+      overflow:hidden;
+      position:relative;
+      min-height: 280px;
+      box-shadow: 0 14px 40px rgba(15,23,42,0.08);
+    }
+    .hero-visual .badge{
+      position:absolute;
+      left:14px; top:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 9px 11px;
+      border-radius:999px;
+      border: 1px solid rgba(14,33,102,0.14);
+      background: rgba(255,255,255,0.9);
+      font-weight:900;
+      color: var(--blu);
+      font-size: 12px;
+    }
+    .hero-visual .badge .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, var(--azzurro), var(--viola));
+      box-shadow: 0 8px 18px rgba(137,35,173,0.16);
+    }
+
+    .hero-visual svg{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    /* Sections */
+    section{
+      padding: 18px 0;
+    }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 8px 0 14px;
+      flex-wrap:wrap;
+    }
+    .section-head h2{
+      margin:0;
+      font-size: 22px;
+      color: var(--blu);
+      letter-spacing:-0.25px;
+    }
+    .section-head p{
+      margin:0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    .card{
+      border-radius: var(--r20);
+      border: 1px solid rgba(226,229,243,1);
+      background: var(--card);
+      box-shadow: 0 12px 36px rgba(15,23,42,0.06);
+      overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 52px rgba(15,23,42,0.10);
+      border-color: rgba(14,33,102,0.16);
+    }
+    .card .inner{
+      padding: 16px;
+    }
+
+    .feature{
+      grid-column: span 4;
+      min-height: 150px;
+      position:relative;
+    }
+    .feature .icon{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      color: var(--blu);
+      border:1px solid rgba(224,231,255,1);
+      background: linear-gradient(135deg, rgba(238,242,255,1), rgba(245,247,255,1));
+      margin-bottom: 10px;
+    }
+    .feature h3{
+      margin:0 0 6px;
+      font-size: 15px;
+      color: #111827;
+      letter-spacing:-0.15px;
+    }
+    .feature p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* How it works (steps) */
+    .steps{
+      grid-column: span 12;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .step{
+      border-radius: var(--r20);
+      border: 1px solid rgba(226,229,243,1);
+      background: linear-gradient(180deg, #ffffff, rgba(252,252,255,0.75));
+      box-shadow: 0 12px 36px rgba(15,23,42,0.06);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .step:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 52px rgba(15,23,42,0.10);
+      border-color: rgba(137,35,173,0.18);
+    }
+    .step .num{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 34px; height: 34px;
+      border-radius: 14px;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blu), var(--viola));
+      box-shadow: 0 12px 28px rgba(14,33,102,0.18);
+      margin-bottom: 10px;
+    }
+    .step h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: var(--blu);
+    }
+    .step p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .step:after{
+      content:"";
+      position:absolute;
+      right:-60px; bottom:-60px;
+      width: 180px; height: 180px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, rgba(25,198,255,0.22), transparent 55%);
+      transform: rotate(12deg);
+    }
+
+    /* Strategy grid */
+    .strategy{
+      grid-column: span 6;
+      min-height: 152px;
+    }
+    .strategy .header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 8px;
+    }
+    .strategy h3{
+      margin:0;
+      font-size: 15px;
+      color: var(--blu);
+      letter-spacing:-0.15px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius:999px;
+      font-weight: 900;
+      font-size: 12px;
+      white-space:nowrap;
+      border: 1px solid rgba(14,33,102,0.14);
+      background: rgba(239,246,255,0.85);
+      color: var(--blu);
+    }
+    .tag.orange{
+      border-color: var(--arancio-bd);
+      background: var(--arancio-bg);
+      color: var(--arancio-txt);
+    }
+    .tag.green{
+      border-color: var(--verde-bd);
+      background: var(--verde-bg);
+      color: var(--verde);
+    }
+    .tag .dot{
+      width:9px;height:9px;border-radius:999px;
+      background: linear-gradient(135deg, var(--azzurro), var(--viola));
+    }
+    .tag.orange .dot{ background: linear-gradient(135deg,#f59e0b,var(--arancio)); }
+    .tag.green .dot{ background: linear-gradient(135deg,#34d399,var(--verde)); }
+
+    .list{
+      margin: 10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+    }
+    .list li{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .check{
+      width:18px;height:18px;border-radius:7px;
+      border:1px solid rgba(187,247,208,1);
+      background: rgba(236,253,245,0.9);
+      display:flex; align-items:center; justify-content:center;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+    .check svg{ width:12px;height:12px; display:block; }
+
+    /* Pricing */
+    .pricing{
+      grid-column: span 12;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-items:stretch;
+    }
+    .plan{
+      border-radius: var(--r28);
+      border: 1px solid rgba(226,229,243,1);
+      background: #ffffff;
+      box-shadow: 0 14px 44px rgba(15,23,42,0.08);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height: 100%;
+      position:relative;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .plan:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(15,23,42,0.12);
+      border-color: rgba(14,33,102,0.18);
+    }
+    .plan .head{
+      padding: 16px 16px 14px;
+      border-bottom: 1px solid rgba(226,229,243,1);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(25,198,255,0.16), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(137,35,173,0.14), transparent 55%),
+        #f8f9ff;
+    }
+    .plan .name{
+      margin:0;
+      font-size: 16px;
+      color: var(--blu);
+      letter-spacing:-0.2px;
+    }
+    .plan .sub{
+      margin-top: 6px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .price{
+      margin-top: 12px;
+      display:flex;
+      align-items:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .price strong{
+      font-size: 30px;
+      color: #111827;
+      letter-spacing:-0.4px;
+    }
+    .price span{
+      color: var(--muted);
+      font-size: 12px;
+      padding-bottom: 6px;
+    }
+
+    .plan .body{
+      padding: 14px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      flex:1 1 auto;
+    }
+    .plan .includes{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:9px;
+    }
+    .plan .includes li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size: 13px;
+      color: var(--muted2);
+    }
+    .plan .footer{
+      padding: 0 16px 16px;
+      margin-top:auto;
+    }
+    .plan .cta{
+      width:100%;
+      justify-content:center;
+    }
+
+    .plan.featured{
+      border-color: rgba(249,115,22,0.35);
+      box-shadow: 0 18px 64px rgba(249,115,22,0.14);
+    }
+    .ribbon{
+      position:absolute;
+      top: 14px; right: 14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--arancio-bd);
+      background: linear-gradient(135deg, #ffffff, var(--arancio-bg));
+      color: var(--arancio-txt);
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .ribbon .dot{
+      width:9px;height:9px;border-radius:999px;
+      background: linear-gradient(135deg,#f59e0b,var(--arancio));
+    }
+
+    /* Activation CTA block */
+    .cta-block{
+      border-radius: var(--r28);
+      border: 1px solid var(--arancio-bd);
+      background: linear-gradient(135deg, var(--arancio-bg), #ffffff);
+      box-shadow: 0 18px 60px rgba(249,115,22,0.10);
+      overflow:hidden;
+    }
+    .cta-block .inner{
+      padding: 18px;
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .cta-block h3{
+      margin:0;
+      font-size: 18px;
+      color: var(--arancio-txt);
+      letter-spacing:-0.2px;
+    }
+    .cta-block p{
+      margin: 6px 0 0;
+      color: var(--arancio-txt);
+      opacity:0.95;
+      font-size: 13px;
+      max-width: 76ch;
+    }
+
+    /* Footer note */
+    .note{
+      border-radius: var(--r16);
+      border: 1px dashed rgba(203,213,245,1);
+      background: rgba(248,250,252,0.9);
+      padding: 14px 16px;
+      color: var(--muted2);
+      font-size: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .hero-visual{ min-height: 240px; }
+      .feature{ grid-column: span 6; }
+      .strategy{ grid-column: span 12; }
+      .steps{ grid-template-columns: 1fr; }
+      .pricing{ grid-template-columns: 1fr; }
+      .brand{ min-width: 0; }
+    }
+    @media (max-width: 560px){
+      .nav a{ display:none; }
+      .feature{ grid-column: span 12; }
+      .hero-inner{ padding: 18px; }
+    }
+
+    /* Tiny animation for entrance */
+    .reveal{ opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in{ opacity:1; transform:none; }
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="brand-title">
+            <strong>Smart Profit</strong>
+            <span>Gestione strategica e operativa dell’eCommerce farmacia</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Navigazione">
+          <a href="#panoramica">Panoramica</a>
+          <a href="#funziona">Come funziona</a>
+          <a href="#strategie">Strategie</a>
+          <a href="#prezzi">Piani</a>
+          <a href="#attivazione">Attivazione</a>
+          <a class="btn btn-primary" href="#attivazione"><span class="btn-dot"></span>Richiedi info</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="hero-inner">
+          <div class="reveal">
+            <div class="kicker-row">
+              <span class="chip"><span class="dot"></span>Controllo prezzi & margini</span>
+              <span class="chip chip-green"><span class="dot"></span>Strategie applicate da noi</span>
+              <span class="chip chip-orange"><span class="dot"></span>Crescita sostenibile</span>
+            </div>
+
+            <h1>
+              Quante ore servirebbero per <span class="accent">quintuplicare gli ordini</span>
+              di un eCommerce farmacia, proteggendo il margine?
+              <br><span style="color:#111827;">Nessuna. Lo facciamo noi per te.</span>
+            </h1>
+
+            <p>
+              Con Smart Profit ci affidi la gestione strategica e operativa dell’eCommerce:
+              analizziamo il catalogo, definiamo le regole e applichiamo le strategie nel tempo
+              su prodotti, prezzi e canali di acquisizione. Tu resti in controllo, noi facciamo crescere.
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#prezzi"><span class="btn-dot"></span>Vedi piani e prezzi</a>
+              <a class="btn" href="#funziona">Scopri come funziona</a>
+            </div>
+
+            <div class="micro" aria-label="Punti chiave">
+              <span><i></i>Strategie attive in modo continuativo</span>
+              <span><i></i>Interventi selettivi (prodotti, Minsan, marche)</span>
+              <span><i></i>Monitoraggio performance & anomalie</span>
+            </div>
+          </div>
+
+          <!-- Visual (SVG inline: niente dipendenze esterne) -->
+          <div class="hero-visual reveal" aria-hidden="true">
+            <div class="badge"><span class="dot"></span>Dashboard di controllo</div>
+            <svg viewBox="0 0 640 420" role="img" aria-label="Illustrazione Smart Profit">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#0e2166" stop-opacity="1"/>
+                  <stop offset="1" stop-color="#8923ad" stop-opacity="0.92"/>
+                </linearGradient>
+                <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#19c6ff" stop-opacity="0.95"/>
+                  <stop offset="1" stop-color="#8923ad" stop-opacity="0.7"/>
+                </linearGradient>
+                <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.12"/>
+                </filter>
+              </defs>
+
+              <!-- soft shapes -->
+              <circle cx="110" cy="88" r="70" fill="#19c6ff" opacity="0.10"/>
+              <circle cx="520" cy="90" r="86" fill="#8923ad" opacity="0.10"/>
+              <circle cx="520" cy="330" r="90" fill="#f97316" opacity="0.08"/>
+
+              <!-- main panel -->
+              <g filter="url(#s)">
+                <rect x="70" y="70" width="500" height="290" rx="22" fill="#ffffff" />
+                <rect x="70" y="70" width="500" height="58" rx="22" fill="#f8f9ff" />
+                <circle cx="102" cy="99" r="7" fill="#ef4444" opacity="0.7"/>
+                <circle cx="126" cy="99" r="7" fill="#f97316" opacity="0.7"/>
+                <circle cx="150" cy="99" r="7" fill="#15803d" opacity="0.7"/>
+
+                <!-- left mini cards -->
+                <rect x="94" y="148" width="160" height="70" rx="16" fill="#fcfcff" stroke="#e2e5f3"/>
+                <rect x="94" y="232" width="160" height="104" rx="16" fill="#ffffff" stroke="#e2e5f3"/>
+                <rect x="114" y="168" width="118" height="10" rx="5" fill="#0e2166" opacity="0.18"/>
+                <rect x="114" y="188" width="92" height="10" rx="5" fill="#8923ad" opacity="0.18"/>
+
+                <!-- right chart -->
+                <rect x="276" y="148" width="270" height="188" rx="16" fill="#ffffff" stroke="#e2e5f3"/>
+                <path d="M300 305 C340 250, 370 300, 410 230 C450 160, 480 210, 520 160"
+                      fill="none" stroke="url(#g2)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M300 305 L520 160" fill="none" stroke="#0e2166" stroke-opacity="0.08" stroke-width="2" stroke-dasharray="6 8"/>
+
+                <!-- bars -->
+                <rect x="306" y="260" width="20" height="62" rx="8" fill="#0e2166" opacity="0.12"/>
+                <rect x="336" y="238" width="20" height="84" rx="8" fill="#0e2166" opacity="0.12"/>
+                <rect x="366" y="276" width="20" height="46" rx="8" fill="#0e2166" opacity="0.12"/>
+                <rect x="396" y="214" width="20" height="108" rx="8" fill="#0e2166" opacity="0.12"/>
+                <rect x="426" y="246" width="20" height="76" rx="8" fill="#0e2166" opacity="0.12"/>
+
+                <!-- KPI pill -->
+                <rect x="300" y="164" width="160" height="36" rx="18" fill="url(#g1)" opacity="0.95"/>
+                <circle cx="320" cy="182" r="6" fill="#19c6ff" opacity="0.95"/>
+                <rect x="334" y="176" width="98" height="12" rx="6" fill="#ffffff" opacity="0.45"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Panoramica -->
+  <section id="panoramica">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <h2>Panoramica del servizio</h2>
+          <p>
+            Smart Profit nasce per accompagnare la crescita dell’eCommerce in modo sostenibile,
+            moltiplicando i volumi nel tempo e mantenendo sempre il massimo controllo su margini, prezzi e promozioni.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card feature reveal">
+          <div class="inner">
+            <div class="icon">⏱</div>
+            <h3>Risparmi tempo operativo</h3>
+            <p>Gestiamo noi l’applicazione periodica delle strategie, senza richiedere intervento operativo continuo alla Farmacia.</p>
+          </div>
+        </div>
+
+        <div class="card feature reveal">
+          <div class="inner">
+            <div class="icon">🛡</div>
+            <h3>Protezione del margine</h3>
+            <p>Regole di ricarico minimo, durata offerte, soglie di costo, esclusioni e limiti quantità per prevenire rischi.</p>
+          </div>
+        </div>
+
+        <div class="card feature reveal">
+          <div class="inner">
+            <div class="icon">🎯</div>
+            <h3>Interventi mirati</h3>
+            <p>Strategie selettive su Minsan, marche, best seller, prodotti mai venduti e alta disponibilità: zero impatto inutile sul catalogo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Come funziona -->
+  <section id="funziona">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <h2>Come funziona</h2>
+          <p>
+            Partiamo con un allineamento strategico iniziale. Poi definiamo, condividiamo e applichiamo una strategia completa,
+            monitorando costantemente performance e anomalie.
+          </p>
+        </div>
+        <a class="btn" href="#attivazione">Parla con un account manager</a>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="num">1</div>
+          <h3>Allineamento strategico iniziale</h3>
+          <p>Definiamo perimetro operativo, obiettivi di crescita, politiche di margine e vincoli operativi.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">2</div>
+          <h3>Strategia strategico/operativa</h3>
+          <p>Costruiamo una strategia calibrata sul tuo scenario e sul piano scelto. Dopo approvazione, la gestiamo nel tempo.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">3</div>
+          <h3>Monitoraggio e condivisione risultati</h3>
+          <p>Verifichiamo l’efficacia, individuiamo anomalie, ottimizziamo progressivamente e condividiamo i risultati con la Farmacia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategie -->
+  <section id="strategie">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <h2>Come sono strutturate le strategie</h2>
+          <p>
+            Ogni azione nasce da regole e controlli: interventi precisi e ripetibili su catalogo e canali, con protezione del margine.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card strategy reveal">
+          <div class="inner">
+            <div class="header">
+              <h3>Controllo prezzi & protezione margine</h3>
+              <span class="tag green"><span class="dot"></span>Regole</span>
+            </div>
+            <ul class="list">
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Durata offerte, ricarico minimo, limiti quantità e soglie di costo.</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Esclusioni per marche o singoli articoli quando necessario.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card strategy reveal">
+          <div class="inner">
+            <div class="header">
+              <h3>Interventi mirati sul catalogo</h3>
+              <span class="tag"><span class="dot"></span>Selettivo</span>
+            </div>
+            <ul class="list">
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Strategie su prodotti singoli o su marche specifiche.</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Azioni su best seller, prodotti mai venduti e alta disponibilità.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card strategy reveal">
+          <div class="inner">
+            <div class="header">
+              <h3>Analisi continua & anomalie</h3>
+              <span class="tag orange"><span class="dot"></span>Qualità</span>
+            </div>
+            <ul class="list">
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Individuiamo anomalie su prezzi, visibilità, dati e disponibilità.</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Correzioni periodiche per mantenere il catalogo “pulito” e performante.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card strategy reveal">
+          <div class="inner">
+            <div class="header">
+              <h3>Gestione canali di acquisizione</h3>
+              <span class="tag"><span class="dot"></span>Budget</span>
+            </div>
+            <ul class="list">
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Monitoraggio budget e riallocazione più efficiente (in base al piano).</li>
+              <li><span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Selezione periodica prodotti attivi sui canali per evitare dispersioni.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="note reveal">
+        <strong style="color:var(--blu);">Confronto strategico periodico:</strong>
+        durante il servizio è previsto un confronto ricorrente per condividere risultati, valutare l’andamento e allineare le strategie future in base ai dati.
+      </div>
+    </div>
+  </section>
+
+  <!-- Prezzi -->
+  <section id="prezzi">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <h2>Piani e prezzi</h2>
+          <p>
+            Scegli il livello di crescita e intensità operativa. Nei piani superiori trovi tutto ciò che è incluso nel precedente, più funzionalità avanzate.
+          </p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <!-- STANDARD -->
+        <div class="plan reveal">
+          <div class="head">
+            <h3 class="name">Piano Standard</h3>
+            <div class="sub">
+              <span class="chip" style="padding:6px 10px;"><span class="dot"></span>Base solida</span>
+              <span style="opacity:.85;">Per iniziare a crescere con controllo</span>
+            </div>
+            <div class="price">
+              <strong>550€</strong><span>/ mese</span>
+            </div>
+          </div>
+
+          <div class="body">
+            <ul class="includes">
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Applicazione continuativa delle strategie operative</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Offerte su Minsan specifici e/o marche specifiche</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analisi periodica e gestione anomalie prodotto</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Strategie su prodotti con alta disponibilità</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Regole di protezione del margine (ricarico minimo, durata, quantità)</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Consulenza strategica mensile: fino a 30 min</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Attività operative mensili: fino a 30 min</li>
+            </ul>
+          </div>
+
+          <div class="footer">
+            <a class="btn cta" href="#attivazione">Attiva Standard</a>
+          </div>
+        </div>
+
+        <!-- PLUS (featured) -->
+        <div class="plan featured reveal">
+          <div class="ribbon"><span class="dot"></span>Più scelto</div>
+          <div class="head">
+            <h3 class="name">Piano Plus</h3>
+            <div class="sub">
+              <span class="chip chip-orange" style="padding:6px 10px;"><span class="dot"></span>Accelerazione</span>
+              <span style="opacity:.85;">Per crescere con più leve operative</span>
+            </div>
+            <div class="price">
+              <strong>—</strong><span>/ mese</span>
+            </div>
+            <div style="margin-top:6px;color:var(--muted);font-size:12px;">
+              *Prezzo: comunicato in base al preventivo / accordo commerciale.
+            </div>
+          </div>
+
+          <div class="body">
+            <div class="note" style="border-style:solid;border-color:rgba(226,229,243,1);background:rgba(252,252,255,0.75);">
+              <strong style="color:var(--blu);">Include tutto lo Standard</strong> <span style="color:var(--muted);">+ in aggiunta:</span>
+            </div>
+            <ul class="includes">
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Strategie su prodotti più venduti (best seller) e prodotti mai venduti</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analisi e gestione budget Trovaprezzi & Google Ads (periodica)</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Riduzione globale del ricarico sul catalogo (temporanea, con esclusioni)</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Consulenza strategica mensile: fino a 60 min</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Attività operative mensili: fino a 60 min</li>
+            </ul>
+          </div>
+
+          <div class="footer">
+            <a class="btn btn-primary cta" href="#attivazione"><span class="btn-dot"></span>Richiedi il Plus</a>
+          </div>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="plan reveal">
+          <div class="head">
+            <h3 class="name">Piano Premium</h3>
+            <div class="sub">
+              <span class="chip chip-green" style="padding:6px 10px;"><span class="dot"></span>Avanzato</span>
+              <span style="opacity:.85;">Per chi vuole il massimo controllo e ottimizzazione</span>
+            </div>
+            <div class="price">
+              <strong>1100€</strong><span>/ mese</span>
+            </div>
+          </div>
+
+          <div class="body">
+            <div class="note" style="border-style:solid;border-color:rgba(226,229,243,1);background:rgba(252,252,255,0.75);">
+              <strong style="color:var(--blu);">Include tutto il Plus</strong> <span style="color:var(--muted);">+ in aggiunta:</span>
+            </div>
+            <ul class="includes">
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Offerte basate sulle condizioni di acquisto con i produttori (fasce sconto)</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analisi completa del catalogo (prodotti, costi, scontistiche) per strategie mirate</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Scrematura prodotti su Trovaprezzi & Google Ads (click, conversioni, rendimento)</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Regole avanzate (selezioni per soglie costo, gestione differenziata attività)</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Consulenza strategica mensile: fino a 90 min</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L10 17l-5-5" stroke="#15803d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Attività operative mensili: fino a 90 min</li>
+            </ul>
+          </div>
+
+          <div class="footer">
+            <a class="btn cta" href="#attivazione">Attiva Premium</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="note reveal">
+        <strong style="color:var(--blu);">Nota operativa:</strong>
+        le strategie approvate restano attive in modo continuativo. Frequenza e modalità di operazioni/analisi sono definite
+        in base alla strategia concordata e al perimetro operativo.
+      </div>
+    </div>
+  </section>
+
+  <!-- Attivazione -->
+  <section id="attivazione">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <h2>Come attivare il servizio</h2>
+          <p>
+            Per informazioni su modalità di attivazione e piani disponibili, contatta il tuo account manager di riferimento.
+            Se vuoi, puoi usare anche il form qui sotto come richiesta rapida.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-block reveal">
+        <div class="inner">
+          <div>
+            <h3>Vuoi attivare Smart Profit o ricevere un preventivo?</h3>
+            <p>
+              Indica i tuoi riferimenti e l’obiettivo (es. crescita ordini, protezione margine, ottimizzazione catalogo, gestione Ads).
+              Ti ricontattiamo con il percorso più adatto.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="#form"><span class="btn-dot"></span>Compila richiesta</a>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="grid">
+        <div class="card reveal" style="grid-column: span 7;">
+          <div class="inner" id="form">
+            <h3 style="margin:0 0 8px;color:var(--blu);letter-spacing:-0.15px;">Richiesta rapida</h3>
+            <p style="margin:0 0 12px;color:var(--muted);font-size:13px;">
+              (Demo form) Collega qui il tuo sistema di invio (CRM / endpoint / Mail) oppure sostituisci con i contatti reali.
+            </p>
+
+            <form onsubmit="return handleSubmit(event)" style="display:grid;gap:10px;">
+              <div style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
+                <label style="display:grid;gap:6px;">
+                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Nome e cognome</span>
+                  <input required name="name" placeholder="Es. Mario Rossi"
+                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);outline:none;background:#fff;">
+                </label>
+                <label style="display:grid;gap:6px;">
+                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Email</span>
+                  <input required type="email" name="email" placeholder="Es. farmacia@email.it"
+                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);outline:none;background:#fff;">
+                </label>
+              </div>
+
+              <div style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
+                <label style="display:grid;gap:6px;">
+                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Telefono</span>
+                  <input name="phone" placeholder="Es. +39 ..."
+                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);outline:none;background:#fff;">
+                </label>
+                <label style="display:grid;gap:6px;">
+                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Piano di interesse</span>
+                  <select name="plan"
+                          style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);outline:none;background:#fff;">
+                    <option value="Standard">Standard</option>
+                    <option value="Plus">Plus</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Non so ancora">Non so ancora</option>
+                  </select>
+                </label>
+              </div>
+
+              <label style="display:grid;gap:6px;">
+                <span style="font-size:12px;color:var(--muted2);font-weight:900;">Obiettivo / Note</span>
+                <textarea name="notes" rows="4" placeholder="Es. aumentare ordini, proteggere margine, sistemare catalogo, ottimizzare budget..."
+                          style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);outline:none;background:#fff;resize:vertical;"></textarea>
+              </label>
+
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+                <div style="color:var(--muted);font-size:12px;">
+                  Inviando accetti di essere ricontattato per questa richiesta.
+                </div>
+                <button class="btn btn-primary" type="submit"><span class="btn-dot"></span>Invia richiesta</button>
+              </div>
+
+              <div id="formMsg" style="display:none;margin-top:6px;border-radius:14px;padding:12px 12px;border:1px solid var(--verde-bd);background:var(--verde-bg);color:var(--verde);font-weight:900;font-size:13px;">
+                Richiesta inviata! (Demo) Collega il form al tuo endpoint per l’invio reale.
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card reveal" style="grid-column: span 5;">
+          <div class="inner">
+            <h3 style="margin:0 0 8px;color:var(--blu);letter-spacing:-0.15px;">Contatto diretto</h3>
+            <p style="margin:0 0 12px;color:var(--muted);font-size:13px;">
+              Per maggiori informazioni su servizio, prezzi, modalità di attivazione e piani, contatta il tuo account manager di riferimento.
+            </p>
+
+            <div class="note" style="margin:0 0 12px;">
+              <strong style="color:var(--blu);">Suggerimento:</strong> sostituisci qui sotto con i riferimenti reali (tel/email/calendario).
+            </div>
+
+            <div style="display:grid;gap:10px;">
+              <a class="btn" href="#" onclick="return false;" style="justify-content:flex-start;">
+                📞 <span style="font-weight:900;">Telefono:</span> <span style="color:var(--muted2);">—</span>
+              </a>
+              <a class="btn" href="#" onclick="return false;" style="justify-content:flex-start;">
+                ✉️ <span style="font-weight:900;">Email:</span> <span style="color:var(--muted2);">—</span>
+              </a>
+              <a class="btn btn-primary" href="#" onclick="return false;" style="justify-content:flex-start;">
+                <span class="btn-dot"></span><span style="font-weight:900;">Prenota una call:</span> <span style="color:var(--arancio-txt);">—</span>
+              </a>
+            </div>
+
+            <div style="margin-top:12px" class="note">
+              <strong style="color:var(--blu);">Nota:</strong> la strategia concordata può essere modificata una sola volta ogni 3 mesi;
+              richieste ulteriori possono essere soggette a valutazione e preventivo separato.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:18px 0 26px;color:var(--muted);font-size:12px;">
+        © <span id="year"></span> Smart Profit — Tutti i prezzi sono IVA esclusa.
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Reveal on scroll
+    const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el=>io.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Demo submit handler
+    function handleSubmit(ev){
+      ev.preventDefault();
+      const msg = document.getElementById('formMsg');
+      msg.style.display = 'block';
+      msg.scrollIntoView({behavior:'smooth', block:'nearest'});
+      // Qui puoi aggiungere: fetch('/endpoint', {method:'POST', body: new FormData(ev.target)})
+      return false;
+    }
+  </script>
+</body>
+</html>
