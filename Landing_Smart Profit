@@ -1481,7 +1481,7 @@
         <span class="quote-mark quote-mark-open" aria-hidden="true">“</span>
         <div class="quote-content">
           <p class="quote-question">Quante ore ti servirebbero per quintuplicare gli ordini mantenendo il margine al sicuro?</p>
-          <p class="quote-answer"><span aria-hidden="true">↳</span> Nessuna. Lo facciamo noi per te.</p>
+          <p class="quote-answer">Nessuna. Lo facciamo noi per te.</p>
         </div>
         <span class="quote-mark quote-mark-close" aria-hidden="true">”</span>
       </div>
@@ -1490,61 +1490,99 @@
 
   <style>
     .quote-band{
-      margin: 20px 0 10px;
+      margin: 28px 0 18px;
       width: 100%;
-      border-radius: 28px;
+      border-radius: 34px;
       border: 1px solid rgba(226,229,243,0.95);
       background:
-        radial-gradient(circle at 0% 50%, rgba(25,198,255,0.10), transparent 34%),
-        radial-gradient(circle at 100% 50%, rgba(137,35,173,0.11), transparent 34%),
-        linear-gradient(140deg, rgba(255,255,255,0.96), rgba(248,250,255,0.96));
-      box-shadow: 0 18px 44px rgba(15,23,42,0.08);
-      padding: 16px 22px;
-      display:grid;
-      grid-template-columns: auto 1fr auto;
-      align-items:center;
-      gap: 18px;
+        radial-gradient(circle at 8% 18%, rgba(25,198,255,0.24), transparent 38%),
+        radial-gradient(circle at 90% 84%, rgba(137,35,173,0.26), transparent 42%),
+        linear-gradient(145deg, #f6fbff 0%, #ffffff 52%, #f8f1ff 100%);
+      box-shadow: 0 28px 72px rgba(15,23,42,0.13);
+      padding: 44px 56px;
+      position: relative;
+      overflow:hidden;
+      text-align:center;
+    }
+    .quote-band::before,
+    .quote-band::after{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:999px;
+      z-index:0;
+      pointer-events:none;
+    }
+    .quote-band::before{
+      left:-90px;
+      top:-100px;
+      background: radial-gradient(circle at 50% 50%, rgba(25,198,255,0.25), transparent 68%);
+    }
+    .quote-band::after{
+      right:-90px;
+      bottom:-105px;
+      background: radial-gradient(circle at 50% 50%, rgba(137,35,173,0.24), transparent 68%);
     }
     .quote-mark{
-      font-size: clamp(44px, 5vw, 74px);
-      color: rgba(25,198,255,0.62);
-      line-height:0.8;
+      position:absolute;
+      z-index:1;
+      font-size: clamp(80px, 8vw, 130px);
+      line-height:0.78;
       font-weight:900;
       user-select:none;
+      opacity:0.38;
+      pointer-events:none;
     }
-    .quote-mark-close{ color: rgba(137,35,173,0.45); }
-    .quote-content{ display:grid; gap:7px; }
+    .quote-mark-open{
+      top:22px;
+      left:24px;
+      color: rgba(25,198,255,0.65);
+    }
+    .quote-mark-close{
+      right:24px;
+      bottom:16px;
+      color: rgba(137,35,173,0.56);
+    }
+    .quote-content{
+      position:relative;
+      z-index:2;
+      max-width: 980px;
+      margin: 0 auto;
+      display:grid;
+      gap: 24px;
+    }
     .quote-question{
       margin:0;
       color: var(--blu);
-      font-size: clamp(20px, 2.25vw, 32px);
-      line-height:1.1;
-      letter-spacing:-0.35px;
+      font-size: clamp(26px, 3vw, 46px);
+      line-height:1.12;
+      letter-spacing:-0.5px;
       font-weight:900;
     }
     .quote-answer{
       margin:0;
-      color: #1f2d49;
-      font-size: clamp(15px, 1.35vw, 20px);
-      line-height:1.2;
-      font-weight:900;
-    }
-    .quote-answer span{
       color: var(--viola);
-      margin-right:6px;
+      font-size: clamp(30px, 3.6vw, 56px);
+      line-height:1.06;
+      letter-spacing:-0.7px;
+      font-weight:900;
+      text-shadow: 0 8px 24px rgba(137,35,173,0.20);
     }
 
     @media (max-width: 900px){
       .quote-band{
-        grid-template-columns: 1fr;
-        text-align:center;
-        gap: 8px;
-        padding: 14px 16px;
+        padding: 34px 20px;
+        border-radius: 26px;
       }
       .quote-mark{
-        display:none;
+        font-size: 72px;
+        opacity:0.26;
       }
-      .quote-answer span{ margin-right:4px; }
+      .quote-mark-open{ top:14px; left:10px; }
+      .quote-mark-close{ right:10px; bottom:10px; }
+      .quote-content{ gap:16px; }
+      .quote-answer{ font-size: clamp(30px, 9vw, 42px); }
     }
   </style>
 
