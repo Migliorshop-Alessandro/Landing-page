@@ -834,6 +834,19 @@
     }
     .card .inner{ padding: 16px; }
 
+    .hero-main-cta{
+      padding: 12px 18px;
+    }
+    .hero-main-cta .btn-cta-label{
+      font-size:15px;
+    }
+
+    .direct-appointment-btn{
+      width:100%;
+      padding:12px 14px;
+      min-height:46px;
+    }
+
     .attivazione-demo-btn{
       font-size:34px;
       padding:16px 44px;
@@ -844,22 +857,22 @@
       background:linear-gradient(135deg,#9f35c5,#6f3ec5);
       border:none;
       color:#fff;
-      box-shadow:0 18px 36px rgba(111,62,197,0.30);
+      box-shadow:none;
       animation: pulse-demo 1.9s ease-in-out infinite;
-      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background .18s ease, color .18s ease;
+      transition: transform .18s ease, filter .18s ease, background .18s ease, color .18s ease;
     }
     .attivazione-demo-btn:hover,
     .attivazione-demo-btn:focus-visible{
       background: linear-gradient(135deg,#8b2fbe,#6337c2) !important;
       color:#ffffff !important;
       border:none !important;
-      box-shadow:0 22px 40px rgba(111,62,197,0.45) !important;
-      filter: brightness(1.05);
+      box-shadow:none !important;
+      filter: brightness(1.02);
       outline:none;
     }
     @keyframes pulse-demo{
-      0%,100%{ transform: scale(1); box-shadow:0 18px 36px rgba(111,62,197,0.30); }
-      50%{ transform: scale(1.035); box-shadow:0 24px 48px rgba(111,62,197,0.44); }
+      0%,100%{ transform: scale(1); }
+      50%{ transform: scale(1.035); }
     }
 
     /* ✅ footer centrato */
@@ -1015,7 +1028,7 @@
             </div>
 
             <div class="hero-cta">
-              <a class="btn btn-primary btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
+              <a class="btn btn-primary btn-no-shadow hero-main-cta" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
             </div>
           </div>
 
@@ -1083,19 +1096,16 @@
 
       <div class="spv-pill-groups" aria-label="Punti chiave">
         <div class="spv-pill-col">
-          <div class="spv-col-rail" aria-hidden="true"><span></span><span></span><span></span></div>
           <article class="spv-pill-item"><h4>Automazioni operative</h4><p>Setup e monitoraggio continui.</p></article>
           <article class="spv-pill-item"><h4>Regole attive</h4><p>Nessun intervento manuale ripetuto.</p></article>
           <article class="spv-pill-item"><h4>Task prioritizzati</h4><p>Focus sulle azioni ad alto impatto.</p></article>
         </div>
         <div class="spv-pill-col">
-          <div class="spv-col-rail" aria-hidden="true"><span></span><span></span><span></span></div>
           <article class="spv-pill-item"><h4>Ricarico minimo</h4><p>Soglie protette in ogni fase.</p></article>
           <article class="spv-pill-item"><h4>Controllo offerte</h4><p>Durata e condizioni governate.</p></article>
           <article class="spv-pill-item"><h4>Vincoli dedicati</h4><p>Limiti su prodotti e cluster.</p></article>
         </div>
         <div class="spv-pill-col">
-          <div class="spv-col-rail" aria-hidden="true"><span></span><span></span><span></span></div>
           <article class="spv-pill-item"><h4>Target per marca</h4><p>Interventi mirati e selettivi.</p></article>
           <article class="spv-pill-item"><h4>Logiche per Minsan</h4><p>Azione dove serve davvero.</p></article>
           <article class="spv-pill-item"><h4>Ottimizzazione continua</h4><p>Correzioni rapide nel tempo.</p></article>
@@ -1163,43 +1173,40 @@
       background: rgba(252,253,255,0.82);
       padding: 10px;
       display:grid;
-      grid-template-columns: 16px 1fr;
-      column-gap: 10px;
-      row-gap: 8px;
-      align-items:start;
-    }
-    .spv-col-rail{
-      grid-row: 1 / span 3;
-      position:relative;
-      display:grid;
-      align-content:space-between;
-      justify-items:center;
-      padding: 4px 0;
-    }
-    .spv-col-rail::before{
-      content:"";
-      position:absolute;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      border-radius:999px;
-      background: linear-gradient(180deg, rgba(25,198,255,0.75), rgba(137,35,173,0.72));
-    }
-    .spv-col-rail span{
-      width:8px;height:8px;border-radius:999px;
-      background:#fff;
-      border:2px solid rgba(137,35,173,0.7);
-      box-shadow: 0 0 0 4px rgba(137,35,173,0.10);
-      position:relative;
-      z-index:1;
+      gap:8px;
     }
     .spv-pill-item{
       border-radius: 14px;
       border: 1px solid rgba(203,213,245,0.95);
       background: #ffffff;
-      padding: 9px 10px;
+      padding: 9px 10px 9px 30px;
       min-height: 64px;
       box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+      position:relative;
+    }
+    .spv-pill-item::before{
+      content:"";
+      position:absolute;
+      left:12px;
+      top: 50%;
+      width:8px;
+      height:8px;
+      margin-top:-4px;
+      border-radius:999px;
+      background:#fff;
+      border:2px solid rgba(137,35,173,0.75);
+      box-shadow: 0 0 0 4px rgba(137,35,173,0.10);
+      z-index:2;
+    }
+    .spv-pill-item:not(:last-child)::after{
+      content:"";
+      position:absolute;
+      left:15px;
+      top: 50%;
+      bottom: -12px;
+      width:2px;
+      background: linear-gradient(180deg, rgba(25,198,255,0.72), rgba(137,35,173,0.74));
+      z-index:1;
     }
     .spv-pill-item h4{
       margin:0;
@@ -1223,7 +1230,6 @@
       .spv-overview{ padding: 14px; }
       .spv-card{ min-height: auto; }
       .spv-card h3{ font-size: 19px; }
-      .spv-pill-col{ grid-template-columns: 14px 1fr; column-gap:8px; }
     }
   </style>
 </section>
@@ -1657,8 +1663,8 @@
                 ✉️ <span style="font-weight:900;">Email:</span> <span style="color:var(--muted2);">alessandro.ida@migliorshop.it</span>
               </a>
 
-              <a class="btn btn-primary btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer" style="justify-content:flex-start;">
-                <span class="btn-dot"></span><span class="btn-cta-label">Prenota una call</span>
+              <a class="btn btn-primary btn-no-shadow direct-appointment-btn" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer" style="justify-content:flex-start;">
+                <span class="btn-dot"></span><span class="btn-cta-label">Prenota il tuo appuntamento</span>
               </a>
             </div>
           </div>
