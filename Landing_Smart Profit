@@ -286,9 +286,9 @@
     }
     .hero h1{
       margin:0;
-      font-size: clamp(46px, 7vw, 94px);
-      line-height:0.98;
-      letter-spacing:-1px;
+      font-size: clamp(24px, 4.2vw, 52px);
+      line-height:1;
+      letter-spacing:-0.7px;
       color: var(--viola);
     }
     .hero h1 .accent{
@@ -310,12 +310,12 @@
 
     .hero-tagline{
       margin: 0;
-      font-size: clamp(29px, 3.2vw, 48px);
-      line-height:1.04;
-      letter-spacing:-0.5px;
+      font-size: clamp(22px, 2.7vw, 40px);
+      line-height:1.08;
+      letter-spacing:-0.4px;
       color: var(--blu);
       font-weight:900;
-      max-width: 18ch;
+      max-width: 22ch;
     }
 
     .hero-answer-wrap{
@@ -833,6 +833,19 @@
     }
     .card .inner{ padding: 16px; }
 
+    .attivazione-demo-btn{
+      font-size:34px;
+      padding:16px 44px;
+      border-radius:999px;
+      line-height:1;
+      min-width:360px;
+      justify-content:center;
+      background:linear-gradient(135deg,#9f35c5,#6f3ec5);
+      border:none;
+      color:#fff;
+      box-shadow:0 18px 36px rgba(111,62,197,0.30);
+    }
+
     /* ✅ footer centrato */
     .site-footer{
       padding: 22px 0 26px;
@@ -882,18 +895,19 @@
         padding:8px 12px;
         font-size:12px;
       }
+      .attivazione-demo-btn{
+        min-width:0;
+        width:100%;
+        font-size:26px;
+      }
 
       #attivazione .grid{
         grid-template-columns: 1fr;
       }
-      #attivazione .attivazione-form,
-      #attivazione .attivazione-direct{
+      #attivazione .attivazione-direct,
+      #attivazione .attivazione-cta{
         grid-column: 1 / -1 !important;
       }
-      #attivazione .form-row-2{
-        grid-template-columns: 1fr !important;
-      }
-
       .sat.s1, .sat.s2, .sat.s3{
         position:relative;
         left:auto; right:auto; top:auto; bottom:auto;
@@ -1576,64 +1590,14 @@
         <div>
           <h2>Come attivare il servizio</h2>
           <p>
-            Per maggiori informazioni su servizio, prezzi, modalità di attivazione e piani disponibili, è possibile contattare il proprio account manager di riferimento o fare richiesta di essere contattati trami il form.
+            Per maggiori informazioni su servizio, prezzi, modalità di attivazione e piani disponibili, puoi contattare direttamente il tuo account manager oppure prenotare una call dal calendario.
           </p>
         </div>
       </div>
 
-      <!-- ✅ form + contatto diretto affiancati -->
+      <!-- ✅ contatto diretto + call to action affiancati -->
       <div class="grid">
-        <div class="card reveal attivazione-form" style="grid-column: span 7;">
-          <div class="inner" id="form">
-            <h3 style="margin:0 0 8px;color:var(--blu);letter-spacing:-0.15px;">Richiesta rapida</h3>
-
-            <form onsubmit="return handleSubmit(event)" style="display:grid;gap:10px;">
-              <div class="form-row-2" style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Nome e cognome</span>
-                  <input required name="name" placeholder="Es. Mario Rossi"
-                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                </label>
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Email</span>
-                  <input required type="email" name="email" placeholder="Es. farmacia@email.it"
-                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                </label>
-              </div>
-
-              <div class="form-row-2" style="display:grid;grid-template-columns: 1fr 1fr; gap:10px;">
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Telefono</span>
-                  <input name="phone" placeholder="Es. +39 ..."
-                         style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                </label>
-                <label style="display:grid;gap:6px;">
-                  <span style="font-size:12px;color:var(--muted2);font-weight:900;">Piano di interesse</span>
-                  <select name="plan"
-                          style="padding:12px 12px;border-radius:14px;border:1px solid rgba(226,229,243,1);background:#fff;">
-                    <option value="Standard">Standard</option>
-                    <option value="Plus">Plus</option>
-                    <option value="Premium">Premium</option>
-                    <option value="Non so ancora">Non so ancora</option>
-                  </select>
-                </label>
-              </div>
-
-              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
-                <div style="color:var(--muted);font-size:12px;">
-                  Inviando accetti di essere ricontattato per questa richiesta.
-                </div>
-                <button class="btn btn-primary btn-no-shadow" type="submit"><span class="btn-dot"></span><span class="btn-cta-label">Invia richiesta</span></button>
-              </div>
-
-              <div id="formMsg" style="display:none;margin-top:6px;border-radius:14px;padding:12px 12px;border:1px solid var(--verde-bd);background:var(--verde-bg);color:var(--verde);font-weight:900;font-size:13px;">
-                Richiesta inviata! (Demo) Collega il form al tuo endpoint per l’invio reale.
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div class="card reveal attivazione-direct" style="grid-column: span 5;">
+        <div class="card reveal attivazione-direct" style="grid-column: span 6;">
           <div class="inner">
             <h3 style="margin:0 0 10px;color:var(--blu);letter-spacing:-0.15px;">Contatto diretto</h3>
 
@@ -1655,6 +1619,19 @@
                 <span class="btn-dot"></span><span class="btn-cta-label">Prenota una call</span>
               </a>
             </div>
+          </div>
+        </div>
+
+        <div class="card reveal attivazione-cta" style="grid-column: span 6;">
+          <div class="inner" style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;background:linear-gradient(180deg,#eef3ff,#e6eefb);">
+            <h3 style="margin:0;color:var(--blu);font-size:52px;letter-spacing:-0.8px;line-height:1;">Provalo gratis!</h3>
+            <p style="margin:0;color:#1e314d;font-size:18px;line-height:1.35;max-width:34ch;">
+              Scopri come migliorare l'efficienza della tua farmacia con soluzioni di intelligenza artificiale avanzate.
+              Risparmia tempo, riduci i costi e ottieni risultati straordinari 🚀
+            </p>
+            <a class="btn btn-primary btn-no-shadow attivazione-demo-btn" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">
+              Richiedi demo
+            </a>
           </div>
         </div>
       </div>
@@ -1683,14 +1660,6 @@
     }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
     revealEls.forEach(el=>io.observe(el));
 
-    // Demo submit handler
-    function handleSubmit(ev){
-      ev.preventDefault();
-      const msg = document.getElementById('formMsg');
-      msg.style.display = 'block';
-      msg.scrollIntoView({behavior:'smooth', block:'nearest'});
-      return false;
-    }
   </script>
 </body>
 </html>
