@@ -864,12 +864,7 @@
         align-self:center;
       }
       .logo-link img{ height:32px; }
-      .brand-title{
-        align-items:flex-start;
-        gap:0;
-      }
-      .brand-title strong{ font-size:15px; }
-      .brand-title span{ display:none; }
+      .brand-title{ display:none; }
       .nav{
         justify-content:center;
       }
