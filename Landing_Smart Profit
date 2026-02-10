@@ -1171,7 +1171,7 @@
       border-radius: 18px;
       border: 1px dashed rgba(203,213,245,0.9);
       background: rgba(252,253,255,0.82);
-      padding: 10px;
+      padding: 10px 10px 10px 34px;
       display:grid;
       gap:8px;
     }
@@ -1179,15 +1179,16 @@
       border-radius: 14px;
       border: 1px solid rgba(203,213,245,0.95);
       background: #ffffff;
-      padding: 9px 10px 9px 30px;
+      padding: 9px 10px;
       min-height: 64px;
       box-shadow: 0 8px 18px rgba(15,23,42,0.05);
       position:relative;
+      overflow: visible;
     }
     .spv-pill-item::before{
       content:"";
       position:absolute;
-      left:12px;
+      left:-17px;
       top: 50%;
       width:8px;
       height:8px;
@@ -1201,7 +1202,7 @@
     .spv-pill-item:not(:last-child)::after{
       content:"";
       position:absolute;
-      left:15px;
+      left:-14px;
       top: 50%;
       bottom: -12px;
       width:2px;
@@ -1427,15 +1428,12 @@
 
   <style>
     .quote-band{
-      margin: 28px 0 18px;
+      margin: 10px 0 18px;
       width: 100%;
       border-radius: 34px;
       border: 1px solid rgba(226,229,243,0.95);
-      background:
-        radial-gradient(circle at 8% 18%, rgba(25,198,255,0.24), transparent 38%),
-        radial-gradient(circle at 90% 84%, rgba(137,35,173,0.26), transparent 42%),
-        linear-gradient(145deg, #f6fbff 0%, #ffffff 52%, #f8f1ff 100%);
-      box-shadow: 0 28px 72px rgba(15,23,42,0.13);
+      background: linear-gradient(180deg, #ffffff, #fbfcff);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.08);
       padding: 44px 56px;
       position: relative;
       overflow:hidden;
@@ -1454,12 +1452,12 @@
     .quote-band::before{
       left:-90px;
       top:-100px;
-      background: radial-gradient(circle at 50% 50%, rgba(25,198,255,0.25), transparent 68%);
+      background: radial-gradient(circle at 50% 50%, rgba(25,198,255,0.10), transparent 68%);
     }
     .quote-band::after{
       right:-90px;
       bottom:-105px;
-      background: radial-gradient(circle at 50% 50%, rgba(137,35,173,0.24), transparent 68%);
+      background: radial-gradient(circle at 50% 50%, rgba(137,35,173,0.10), transparent 68%);
     }
     .quote-mark{
       position:absolute;
@@ -1474,12 +1472,12 @@
     .quote-mark-open{
       top:22px;
       left:24px;
-      color: rgba(25,198,255,0.65);
+      color: rgba(25,198,255,0.42);
     }
     .quote-mark-close{
       right:24px;
       bottom:16px;
-      color: rgba(137,35,173,0.56);
+      color: rgba(137,35,173,0.42);
     }
     .quote-content{
       position:relative;
@@ -1504,7 +1502,6 @@
       line-height:1.06;
       letter-spacing:-0.7px;
       font-weight:900;
-      text-shadow: 0 8px 24px rgba(137,35,173,0.20);
     }
 
     @media (max-width: 900px){
@@ -1672,9 +1669,9 @@
 
         <div class="card reveal attivazione-cta" style="grid-column: span 6;">
           <div class="inner" style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;background:linear-gradient(180deg,#eef3ff,#e6eefb);">
-            <h3 style="margin:0;color:var(--blu);font-size:52px;letter-spacing:-0.8px;line-height:1;">Scoprilo ora.</h3>
+            <h3 style="margin:0;color:var(--blu);font-size:52px;letter-spacing:-0.8px;line-height:1;">Scoprilo gratis!</h3>
             <p style="margin:0;color:#1e314d;font-size:18px;line-height:1.35;max-width:34ch;">
-              Scopri come possiamo gestire per te le strategie e l'operatività, proteggendo i margini e con più risultati.
+              Moltiplichiamo gli ordini applicando le strategie al posto tuo, proteggendo il margine e senza che tu debba dedicare tempo.
             </p>
             <a class="btn btn-primary btn-no-shadow attivazione-demo-btn" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">
               Fissa una call
