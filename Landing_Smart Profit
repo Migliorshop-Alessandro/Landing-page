@@ -286,10 +286,10 @@
     }
     .hero h1{
       margin:0;
-      font-size: clamp(29px, 3.2vw, 48px);
-      line-height:1.04;
-      letter-spacing:-0.5px;
-      color: var(--blu);
+      font-size: clamp(46px, 7vw, 94px);
+      line-height:0.98;
+      letter-spacing:-1px;
+      color: var(--viola);
     }
     .hero h1 .accent{
       color: var(--viola);
@@ -306,6 +306,16 @@
       border-radius:999px;
       background: linear-gradient(90deg, rgba(25,198,255,0.18), rgba(137,35,173,0.20));
       z-index:-1;
+    }
+
+    .hero-tagline{
+      margin: 0;
+      font-size: clamp(29px, 3.2vw, 48px);
+      line-height:1.04;
+      letter-spacing:-0.5px;
+      color: var(--blu);
+      font-weight:900;
+      max-width: 18ch;
     }
 
     .hero-answer-wrap{
@@ -963,20 +973,10 @@
       <div class="hero-card">
         <div class="hero-inner">
           <div class="reveal">
-            <div class="kicker-row">
-              <span class="chip chip-green"><span class="dot"></span>Smart Profit</span>
-            </div>
-
             <div class="hero-title-block">
-              <h1>
-                Quante ore ti servirebbero per <span class="accent">quintuplicare gli ordini</span>
-                mantenendo il margine al sicuro?
-              </h1>
+              <h1><span class="accent">Smart Profit</span></h1>
 
-              <div class="hero-answer-wrap">
-                <span class="hero-answer-link" aria-hidden="true">↳</span>
-                <p>Nessuna. <span>Lo facciamo noi per te.</span></p>
-              </div>
+              <p class="hero-tagline">Moltiplica gli ordini fino a 5 volte proteggendo il margine</p>
 
               <p class="hero-sub">
                 Tu mantieni controllo, strategia e visione: noi attiviamo, ottimizziamo e facciamo crescere le performance,
