@@ -1022,7 +1022,7 @@
               <p class="hero-tagline">Moltiplica gli ordini fino a 5 volte proteggendo il margine</p>
 
               <p class="hero-sub">
-               Senza che tu debba investire tempo aggiuntivo, mentre tu mantieni il controllo strategico, noi attiviamo e ottimizziamo le leve operative per generare risultati concreti.
+               Senza che tu debba investire tempo aggiuntivo, mentre tu mantieni il controllo strategico, noi attiviamo e ottimizziamo le leve operative per generare<br class="hero-break-desktop"> risultati concreti.
               </p>
             </div>
 
@@ -1066,8 +1066,8 @@
       <div>
         <h2>Panoramica del servizio</h2>
         <p>
-          Smart Profit ti permette di far crescere l’eCommerce senza perdere tempo operativo,
-          mantenendo controllo totale su margini, prezzi e promozioni.
+          Smart Profit ti permette di far crescere l' e-commerce senza perdere tempo operativo,
+          mantenendo però controllo totale.
         </p>
       </div>
     </div>
@@ -1077,19 +1077,19 @@
         <article class="spv-card c1">
           <div class="spv-icon" aria-hidden="true">◷</div>
           <h3>Risparmi tempo operativo</h3>
-          <p>Strategie applicate e mantenute attive senza richiedere interventi continui alla Farmacia.</p>
+          <p>Le strategie sono applicate da noi periodicamente, mantenute attive senza richiederti interventi.</p>
         </article>
 
         <article class="spv-card c2">
           <div class="spv-icon" aria-hidden="true">◈</div>
           <h3>Proteggi i margini</h3>
-          <p>Regole su ricarico minimo, durata offerte, soglie e limiti di acquisto per restare in controllo.</p>
+          <p>Tutte le strategie  seguono regole che permettono di garantire un ricarico minimo</p>
         </article>
 
         <article class="spv-card c3">
           <div class="spv-icon" aria-hidden="true">◎</div>
-          <h3>Interventi selettivi</h3>
-          <p>Azioni mirate su prodotti, Minsan e marche, evitando impatti inutili sull’intero catalogo.</p>
+          <h3>Moltiplica gli ordini</h3>
+          <p>Tramite azioni mirate moltiplica i volumi, sempre in modo sostenibile</p>
         </article>
       </div>
 
@@ -1108,6 +1108,47 @@
           <article class="spv-pill-item"><h4>Target per marca</h4><p>Interventi mirati e selettivi.</p></article>
           <article class="spv-pill-item"><h4>Logiche per Minsan</h4><p>Azione dove serve davvero.</p></article>
           <article class="spv-pill-item"><h4>Ottimizzazione continua</h4><p>Correzioni rapide nel tempo.</p></article>
+        </div>
+      </div>
+
+      <div class="spv-mobile-stack" aria-label="Punti chiave mobile">
+        <div class="spv-mobile-group">
+          <article class="spv-card c1">
+            <div class="spv-icon" aria-hidden="true">◷</div>
+            <h3>Risparmi tempo operativo</h3>
+            <p>Le strategie sono applicate da noi periodicamente, mantenute attive senza richiederti interventi.</p>
+          </article>
+          <div class="spv-pill-col">
+            <article class="spv-pill-item"><h4>Automazioni operative</h4><p>Setup e monitoraggio continui.</p></article>
+            <article class="spv-pill-item"><h4>Regole attive</h4><p>Nessun intervento manuale ripetuto.</p></article>
+            <article class="spv-pill-item"><h4>Task prioritizzati</h4><p>Focus sulle azioni ad alto impatto.</p></article>
+          </div>
+        </div>
+
+        <div class="spv-mobile-group">
+          <article class="spv-card c2">
+            <div class="spv-icon" aria-hidden="true">◈</div>
+            <h3>Proteggi i margini</h3>
+            <p>Tutte le strategie  seguono regole che permettono di garantire un ricarico minimo</p>
+          </article>
+          <div class="spv-pill-col">
+            <article class="spv-pill-item"><h4>Ricarico minimo</h4><p>Soglie protette in ogni fase.</p></article>
+            <article class="spv-pill-item"><h4>Controllo offerte</h4><p>Durata e condizioni governate.</p></article>
+            <article class="spv-pill-item"><h4>Vincoli dedicati</h4><p>Limiti su prodotti e cluster.</p></article>
+          </div>
+        </div>
+
+        <div class="spv-mobile-group">
+          <article class="spv-card c3">
+            <div class="spv-icon" aria-hidden="true">◎</div>
+            <h3>Moltiplica gli ordini</h3>
+            <p>Tramite azioni mirate moltiplica i volumi, sempre in modo sostenibile</p>
+          </article>
+          <div class="spv-pill-col">
+            <article class="spv-pill-item"><h4>Target per marca</h4><p>Interventi mirati e selettivi.</p></article>
+            <article class="spv-pill-item"><h4>Logiche per Minsan</h4><p>Azione dove serve davvero.</p></article>
+            <article class="spv-pill-item"><h4>Ottimizzazione continua</h4><p>Correzioni rapide nel tempo.</p></article>
+          </div>
         </div>
       </div>
     </div>
@@ -1223,10 +1264,30 @@
       line-height:1.28;
     }
 
+    .spv-mobile-stack{ display:none; }
+
     @media (max-width: 1000px){
       .spv-cards-row{ grid-template-columns: 1fr; }
       .spv-pill-groups{ grid-template-columns: 1fr; }
     }
+
+    @media (max-width: 780px){
+      .hero-break-desktop{ display:none; }
+      .spv-cards-row,
+      .spv-pill-groups{ display:none; }
+      .spv-mobile-stack{
+        display:grid;
+        gap:12px;
+      }
+      .spv-mobile-group{
+        display:grid;
+        gap:12px;
+      }
+    }
+    @media (min-width: 781px){
+      .hero-break-desktop{ display:block; }
+    }
+
     @media (max-width: 620px){
       .spv-overview{ padding: 14px; }
       .spv-card{ min-height: auto; }
@@ -1559,7 +1620,7 @@
           </div>
 
           <div class="footer">
-            <a class="btn cta" href="#attivazione">Attiva Standard</a>
+            <a class="btn cta" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">Attiva Standard</a>
           </div>
         </div>
 
@@ -1590,7 +1651,7 @@
           </div>
 
           <div class="footer">
-            <a class="btn btn-primary cta btn-no-shadow" href="#attivazione"><span class="btn-dot"></span>Attiva Plus</a>
+            <a class="btn btn-primary cta btn-no-shadow" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer"><span class="btn-dot"></span>Attiva Plus</a>
           </div>
         </div>
 
@@ -1621,7 +1682,7 @@
           </div>
 
           <div class="footer">
-            <a class="btn cta" href="#attivazione">Attiva Premium</a>
+            <a class="btn cta" href="https://calendar.app.google/prohXQNL1gghERp96" target="_blank" rel="noopener noreferrer">Attiva Premium</a>
           </div>
         </div>
       </div>
