@@ -643,7 +643,6 @@
       color: #fff;
       background: linear-gradient(135deg, var(--blu), var(--viola));
       box-shadow: 0 12px 28px rgba(14,33,102,0.18);
-      margin-bottom: 10px;
     }
     .step h3{
       margin: 0 0 6px;
@@ -836,10 +835,19 @@
     .card .inner{ padding: 16px; }
 
     .hero-main-cta{
-      padding: 12px 18px;
+      padding: 14px 24px;
+      background: rgb(11, 127, 240) !important;
+      color:#fff !important;
+      border-color: rgb(11, 127, 240) !important;
+    }
+    .hero-main-cta:hover,
+    .hero-main-cta:focus-visible{
+      background: rgb(9, 112, 212) !important;
+      color:#fff !important;
+      border-color: rgb(9, 112, 212) !important;
     }
     .hero-main-cta .btn-cta-label{
-      font-size:15px;
+      font-size:16px;
     }
 
     .direct-appointment-btn{
@@ -1028,7 +1036,7 @@
             </div>
 
             <div class="hero-cta">
-              <a class="btn btn-primary btn-no-shadow hero-main-cta" href="#" onclick="return openCalendlyPopup(event);"><span class="btn-dot"></span><span class="btn-cta-label">Scopri come funziona</span></a>
+              <a class="btn btn-primary btn-no-shadow hero-main-cta" href="#" onclick="return openCalendlyPopup(event);"><span class="btn-cta-label">Scopri come funziona</span></a>
             </div>
           </div>
 
@@ -1185,7 +1193,6 @@
     .spv-card.c3{ background: linear-gradient(180deg, #e6f4ee, #deefe7); }
     .spv-icon{
       font-size: 22px;
-      margin-bottom: 10px;
       filter: saturate(1.1);
     }
     .spv-card h3{
@@ -1317,7 +1324,7 @@
       <!-- STEP 1 -->
       <div class="flow-step left">
         <div class="flow-card">
-          <div class="flow-badge">Step 1</div>
+          <div class="flow-badges"><div class="flow-badge">Step 1</div><div class="flow-badge-green">Lo facciamo insieme</div></div>
           <h3>Allineamento strategico iniziale</h3>
           <p>
             Partiamo da un confronto strutturato per definire il perimetro operativo,
@@ -1331,7 +1338,7 @@
       <div class="flow-step right">
         <div class="flow-dot"></div>
         <div class="flow-card accent">
-          <div class="flow-badge">Step 2</div>
+          <div class="flow-badges"><div class="flow-badge">Step 2</div><div class="flow-badge-green">Lo facciamo noi</div></div>
           <h3>Costruzione e applicazione della strategia</h3>
           <p>
             Progettiamo una strategia strategico/operativa su misura,
@@ -1344,7 +1351,7 @@
       <!-- STEP 3 -->
       <div class="flow-step left">
         <div class="flow-card soft">
-          <div class="flow-badge">Step 3</div>
+          <div class="flow-badges"><div class="flow-badge">Step 3</div><div class="flow-badge-green">Lo facciamo noi</div></div>
           <h3>Monitoraggio continuo e ottimizzazione</h3>
           <p>
             Controlliamo costantemente l’andamento delle attività,
@@ -1433,9 +1440,16 @@
         #ffffff;
     }
 
+    .flow-badges{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
     .flow-badge{
       display:inline-block;
-      margin-bottom: 10px;
       padding: 6px 12px;
       border-radius:999px;
       font-weight:900;
@@ -1443,6 +1457,17 @@
       color: var(--blu);
       background: rgba(239,246,255,0.9);
       border:1px solid rgba(14,33,102,0.14);
+    }
+
+    .flow-badge-green{
+      display:inline-block;
+      padding: 6px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      color:#166534;
+      background: #ecfdf5;
+      border:1px solid #bbf7d0;
     }
 
     .flow-card h3{
@@ -1704,27 +1729,27 @@
 
       <!-- ✅ contatto diretto + call to action affiancati -->
       <div class="grid">
-        <div class="card reveal attivazione-direct" style="grid-column: span 5;">
+        <div class="card reveal attivazione-direct" style="grid-column: span 4;">
           <div class="inner">
-            <h3 style="margin:0 0 10px;color:var(--blu);letter-spacing:-0.15px;">I nostri contatti</h3>
+            <h3 style="margin:0 0 10px;color:var(--blu);letter-spacing:-0.15px;text-align:center;">I nostri contatti</h3>
 
             <div style="display:grid;gap:10px;">
-              <a class="btn" href="tel:0245076435" style="justify-content:flex-start;">
+              <a class="btn" href="tel:0245076435" style="justify-content:center;text-align:center;">
                 📞 <span style="font-weight:900;">Telefono:</span> <span style="color:var(--muted2);">02.45.076.435</span>
               </a>
 
-              <a class="btn" href="mailto:info@migliorshop.it" style="justify-content:flex-start;">
+              <a class="btn" href="mailto:info@migliorshop.it" style="justify-content:center;text-align:center;">
                 ✉️ <span style="font-weight:900;">Email:</span> <span style="color:var(--muted2);">info@migliorshop.it</span>
               </a>
 
-              <a class="btn btn-primary btn-no-shadow direct-appointment-btn" href="#" onclick="return openCalendlyPopup(event);" style="justify-content:flex-start;background:rgb(11, 127, 240);color:#fff;border-color:rgb(11, 127, 240);">
+              <a class="btn btn-primary btn-no-shadow direct-appointment-btn" href="#" onclick="return openCalendlyPopup(event);" style="justify-content:center;text-align:center;background:rgb(11, 127, 240);color:#fff;border-color:rgb(11, 127, 240);">
                 <span class="btn-cta-label">Prenota il tuo appuntamento</span>
               </a>
             </div>
           </div>
         </div>
 
-        <div class="card reveal attivazione-cta" style="grid-column: span 7;">
+        <div class="card reveal attivazione-cta" style="grid-column: span 8;">
           <div class="inner" style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;background:linear-gradient(180deg,#eef3ff,#e6eefb);">
             <h3 style="margin:0;color:var(--blu);font-size:clamp(28px, 3.2vw, 38px);letter-spacing:-0.45px;line-height:1.1;">Scoprilo gratis!</h3>
             <p style="margin:0;color:#1e314d;font-size:16px;line-height:1.45;max-width:62ch;">
